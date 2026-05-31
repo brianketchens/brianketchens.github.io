@@ -814,8 +814,9 @@ section,
   bottom: -100%;
   z-index: 3;
   transition: all ease-in-out 0.5s;
-  background: color-mix(in srgb, var(--background-color), transparent 10%);
+  background: rgba(255, 255, 255, 0.96);
   padding: 15px;
+  border-radius: 4px;
 }
 
 .portfolio .portfolio-item .portfolio-info h4 {
