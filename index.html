@@ -892,6 +892,189 @@
           </div>
         </div><!-- End EPL Portfolio Item -->
 
+       <!-- ================================================
+  CARD 5: COVID ETL Pipeline (SQL)
+================================================ -->
+<div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-SQL filter-R">
+  <svg class="hospital-card-svg" viewBox="0 0 680 420" role="img"
+       xmlns="http://www.w3.org/2000/svg">
+    <title>COVID ETL Pipeline SQL portfolio card</title>
+    <desc>Dark card showing BigQuery ETL pipeline architecture</desc>
+
+    <!-- Background -->
+    <rect width="680" height="420" rx="8" fill="#1A1A1A"/>
+    <!-- Left accent bar -->
+    <rect x="0" y="0" width="4" height="420" fill="#4285F4"/>
+    <!-- Top rule -->
+    <rect x="24" y="28" width="200" height="2" fill="#2A2A2A"/>
+    <rect x="24" y="28" width="60" height="2" fill="#4285F4"/>
+
+    <!-- Title -->
+    <text x="24" y="66" font-family="Georgia, serif" font-size="20"
+          font-weight="700" fill="#FFFFFF" letter-spacing="0.5">COVID-19</text>
+    <text x="24" y="90" font-family="Georgia, serif" font-size="20"
+          font-weight="700" fill="#FFFFFF" letter-spacing="0.5">ETL Pipeline</text>
+    <text x="24" y="114" font-family="Georgia, serif" font-size="20"
+          font-weight="700" fill="#4285F4" letter-spacing="0.5">BigQuery SQL</text>
+    <text x="24" y="136" font-family="Arial, sans-serif" font-size="10"
+          fill="#666666" letter-spacing="1.5">MULTI-SOURCE ETL · 3 PUBLIC DATASETS</text>
+
+    <!-- Divider -->
+    <rect x="24" y="152" width="632" height="0.5" fill="#2A2A2A"/>
+
+    <!-- LEFT PANEL: Pipeline flow diagram -->
+    <rect x="24" y="168" width="200" height="220" rx="4" fill="#111111"/>
+    <text x="36" y="190" font-family="Arial, sans-serif" font-size="10"
+          fill="#666666" letter-spacing="0.8">PIPELINE ARCHITECTURE</text>
+
+    <!-- Source 1 -->
+    <rect x="36" y="200" width="160" height="28" rx="4" fill="#1A3A5C"/>
+    <text x="116" y="212" font-family="Arial, sans-serif" font-size="8"
+          fill="#4285F4" text-anchor="middle" font-weight="700">SOURCE 1</text>
+    <text x="116" y="223" font-family="Arial, sans-serif" font-size="8"
+          fill="#FFFFFF" text-anchor="middle">covid19_open_data</text>
+
+    <!-- Arrow -->
+    <line x1="116" y1="228" x2="116" y2="244" stroke="#4285F4"
+          stroke-width="1.5" stroke-dasharray="3,2"/>
+    <polygon points="111,242 116,250 121,242" fill="#4285F4"/>
+
+    <!-- Source 2 -->
+    <rect x="36" y="252" width="160" height="28" rx="4" fill="#1A3A5C"/>
+    <text x="116" y="264" font-family="Arial, sans-serif" font-size="8"
+          fill="#4285F4" text-anchor="middle" font-weight="700">SOURCE 2</text>
+    <text x="116" y="275" font-family="Arial, sans-serif" font-size="8"
+          fill="#FFFFFF" text-anchor="middle">census_bureau_acs</text>
+
+    <!-- Arrow -->
+    <line x1="116" y1="280" x2="116" y2="296" stroke="#4285F4"
+          stroke-width="1.5" stroke-dasharray="3,2"/>
+    <polygon points="111,294 116,302 121,294" fill="#4285F4"/>
+
+    <!-- Source 3 -->
+    <rect x="36" y="304" width="160" height="28" rx="4" fill="#1A3A5C"/>
+    <text x="116" y="316" font-family="Arial, sans-serif" font-size="8"
+          fill="#4285F4" text-anchor="middle" font-weight="700">SOURCE 3</text>
+    <text x="116" y="327" font-family="Arial, sans-serif" font-size="8"
+          fill="#FFFFFF" text-anchor="middle">covid19_usafacts</text>
+
+    <!-- Arrow to output -->
+    <line x1="116" y1="332" x2="116" y2="348" stroke="#34A853"
+          stroke-width="1.5" stroke-dasharray="3,2"/>
+    <polygon points="111,346 116,354 121,346" fill="#34A853"/>
+
+    <!-- Output table -->
+    <rect x="36" y="356" width="160" height="24" rx="4" fill="#1A3A1A"/>
+    <text x="116" y="368" font-family="Arial, sans-serif" font-size="8"
+          fill="#34A853" text-anchor="middle" font-weight="700">county_base · 2.8M rows</text>
+    <text x="116" y="378" font-family="Arial, sans-serif" font-size="7"
+          fill="#FFFFFF" text-anchor="middle">2,904 counties · 2020-2022</text>
+
+    <!-- CENTER PANEL: Key SQL techniques -->
+    <rect x="236" y="168" width="220" height="220" rx="4" fill="#111111"/>
+    <text x="248" y="190" font-family="Arial, sans-serif" font-size="10"
+          fill="#666666" letter-spacing="0.8">SQL TECHNIQUES USED</text>
+
+    <!-- Technique list -->
+    <rect x="248" y="200" width="6" height="6" rx="1" fill="#4285F4"/>
+    <text x="260" y="208" font-family="Arial, sans-serif" font-size="9"
+          fill="#FFFFFF">Multi-source JOIN on FIPS keys</text>
+
+    <rect x="248" y="218" width="6" height="6" rx="1" fill="#4285F4"/>
+    <text x="260" y="226" font-family="Arial, sans-serif" font-size="9"
+          fill="#FFFFFF">INFORMATION_SCHEMA inspection</text>
+
+    <rect x="248" y="236" width="6" height="6" rx="1" fill="#4285F4"/>
+    <text x="260" y="244" font-family="Arial, sans-serif" font-size="9"
+          fill="#FFFFFF">SAFE_CAST · SAFE_DIVIDE</text>
+
+    <rect x="248" y="254" width="6" height="6" rx="1" fill="#4285F4"/>
+    <text x="260" y="262" font-family="Arial, sans-serif" font-size="9"
+          fill="#FFFFFF">DATE_TRUNC aggregation</text>
+
+    <rect x="248" y="272" width="6" height="6" rx="1" fill="#4285F4"/>
+    <text x="260" y="280" font-family="Arial, sans-serif" font-size="9"
+          fill="#FFFFFF">CASE WHEN wave classification</text>
+
+    <rect x="248" y="290" width="6" height="6" rx="1" fill="#4285F4"/>
+    <text x="260" y="298" font-family="Arial, sans-serif" font-size="9"
+          fill="#FFFFFF">Derived column engineering</text>
+
+    <rect x="248" y="308" width="6" height="6" rx="1" fill="#4285F4"/>
+    <text x="260" y="316" font-family="Arial, sans-serif" font-size="9"
+          fill="#FFFFFF">String manipulation · LPAD</text>
+
+    <rect x="248" y="326" width="6" height="6" rx="1" fill="#4285F4"/>
+    <text x="260" y="334" font-family="Arial, sans-serif" font-size="9"
+          fill="#FFFFFF">GREATEST · NULLIF · COALESCE</text>
+
+    <rect x="248" y="344" width="6" height="6" rx="1" fill="#34A853"/>
+    <text x="260" y="352" font-family="Arial, sans-serif" font-size="9"
+          fill="#34A853">CREATE OR REPLACE TABLE</text>
+
+    <rect x="248" y="362" width="6" height="6" rx="1" fill="#34A853"/>
+    <text x="260" y="370" font-family="Arial, sans-serif" font-size="9"
+          fill="#34A853">Secondary weekly aggregation ETL</text>
+
+    <!-- RIGHT PANEL: Stats -->
+    <rect x="468" y="168" width="188" height="100" rx="4" fill="#111111"/>
+    <text x="480" y="188" font-family="Arial, sans-serif" font-size="10"
+          fill="#666666" letter-spacing="0.8">OUTPUT SCALE</text>
+    <text x="480" y="214" font-family="Georgia, serif" font-size="28"
+          font-weight="700" fill="#FFFFFF">2.8M</text>
+    <text x="480" y="232" font-family="Arial, sans-serif" font-size="9"
+          fill="#666666">rows · county_base</text>
+    <line x1="480" y1="242" x2="644" y2="242" stroke="#2A2A2A" stroke-width="0.5"/>
+    <text x="480" y="256" font-family="Arial, sans-serif" font-size="9"
+          fill="#4285F4">386K weekly aggregated</text>
+    <text x="480" y="268" font-family="Arial, sans-serif" font-size="9"
+          fill="#666666">rows in county_weekly</text>
+
+    <rect x="468" y="280" width="188" height="108" rx="4" fill="#111111"/>
+    <text x="480" y="300" font-family="Arial, sans-serif" font-size="10"
+          fill="#666666" letter-spacing="0.8">SCHEMA CHALLENGES</text>
+    <text x="480" y="320" font-family="Arial, sans-serif" font-size="8"
+          fill="#FFFFFF">→ Mixed STRING/INT64 columns</text>
+    <text x="480" y="336" font-family="Arial, sans-serif" font-size="8"
+          fill="#FFFFFF">→ Wide-format date unpivoting</text>
+    <text x="480" y="352" font-family="Arial, sans-serif" font-size="8"
+          fill="#FFFFFF">→ FIPS key format mismatches</text>
+    <text x="480" y="368" font-family="Arial, sans-serif" font-size="8"
+          fill="#FFFFFF">→ 12-column age band summation</text>
+    <text x="480" y="382" font-family="Arial, sans-serif" font-size="8"
+          fill="#34A853">All resolved in production ETL</text>
+
+    <!-- Footer -->
+    <rect x="24" y="396" width="632" height="0.5" fill="#2A2A2A"/>
+    <text x="28" y="412" font-family="Arial, sans-serif" font-size="9"
+          fill="#666666">BigQuery Standard SQL</text>
+    <rect x="162" y="403" width="0.5" height="10" fill="#2A2A2A"/>
+    <text x="168" y="412" font-family="Arial, sans-serif" font-size="9"
+          fill="#666666">Google Cloud Storage</text>
+    <rect x="282" y="403" width="0.5" height="10" fill="#2A2A2A"/>
+    <text x="288" y="412" font-family="Arial, sans-serif" font-size="9"
+          fill="#666666">INFORMATION_SCHEMA</text>
+    <rect x="398" y="403" width="0.5" height="10" fill="#2A2A2A"/>
+    <text x="404" y="412" font-family="Arial, sans-serif" font-size="9"
+          fill="#666666">CTEs · Window Functions</text>
+    <text x="652" y="412" font-family="Arial, sans-serif" font-size="9"
+          fill="#666666" text-anchor="end">2025</text>
+  </svg>
+
+  <div class="portfolio-info">
+    <h4>COVID-19 ETL Pipeline — BigQuery SQL</h4>
+    <p>Production-grade multi-source ETL joining three public BigQuery
+       datasets across 2,904 US counties. Resolved schema mismatches,
+       type conflicts, and FIPS key formatting inconsistencies to produce
+       a clean 2.8M row analytical base table feeding the structural
+       health inequity analysis.</p>
+    <div class="portfolio-links-custom">
+      <a href="https://github.com/brianketchens/structural-health-inequity-covid"
+         target="_blank">💻 Source Code</a>
+    </div>
+  </div>
+</div><!-- End ETL Portfolio Item --> 
+        
       </div><!-- End Portfolio Container -->
 
     </div>
