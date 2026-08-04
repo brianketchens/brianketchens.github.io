@@ -1,227 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- saved from url=(0045)file:///C:/Users/brian/Downloads/index_2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Brian E Ketchens Portfolio</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brian Ketchens — BI &amp; Operations Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1116;          /* deep control-room ink */
+    --panel:#161B22;        /* lifted panel */
+    --panel-2:#1B222B;      /* hovered panel */
+    --line:#28313D;         /* hairline / grid */
+    --line-2:#333E4C;
+    --text:#E7EBF0;
+    --muted:#8B95A3;
+    --muted-2:#6B7482;
+    --signal:#F2B84B;       /* single signature accent: gauge amber */
+    --signal-dim:rgba(242,184,75,.14);
+    --radius:14px;
+    --gap:14px;
+    --pad:clamp(14px,1.4vw,22px);
+    --display:"Space Grotesk",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--body);
+    color:var(--text);
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(242,184,75,.05), transparent 60%),
+      linear-gradient(var(--ink),var(--ink));
+    /* faint graph-paper signature */
+    background-color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .grid-texture{
+    position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.018) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size:34px 34px;
+  }
 
-  <link rel="icon" type="image/png" href="assets/img/bk-port-icon.png">
-  <link rel="apple-touch-icon" href="assets/img/bk-port-icon.png">
+  .stage{
+    position:relative; z-index:1;
+    height:100dvh; width:100%;
+    padding:var(--gap);
+    display:grid; gap:var(--gap);
+    grid-template-columns:repeat(12,1fr);
+    grid-template-rows:repeat(6,1fr);
+    grid-template-areas:
+      "id id id s1 s1 s2 s2 s3 s3 s4 s4 mr"
+      "id id id p1 p1 p1 p1 p2 p2 p2 p2 mr"
+      "id id id p1 p1 p1 p1 p2 p2 p2 p2 mr"
+      "id id id p1 p1 p1 p1 p2 p2 p2 p2 mr"
+      "sk sk sk p3 p3 p3 p3 p4 p4 p4 p4 mr"
+      "ct ct ct p3 p3 p3 p3 p4 p4 p4 p4 mr";
+  }
 
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  .tile{
+    position:relative; overflow:hidden;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:var(--pad);
+    display:flex; flex-direction:column;
+    transition:border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease;
+  }
+  .tile:hover{
+    border-color:var(--line-2);
+    background:var(--panel-2);
+    transform:translateY(-2px);
+    box-shadow:0 10px 30px -12px rgba(0,0,0,.6);
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--muted-2);
+  }
 
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  /* ---------- identity ---------- */
+  .id{grid-area:id; justify-content:space-between}
+  .id-top{display:flex; align-items:center; gap:14px}
+  .avatar{
+    width:52px; height:52px; border-radius:50%; object-fit:cover;
+    border:1px solid var(--line-2); flex:0 0 auto;
+    filter:grayscale(.15) contrast(1.02);
+  }
+  .name{font-family:var(--display); font-weight:700; font-size:clamp(26px,2.4vw,40px); line-height:1.02; letter-spacing:-.02em}
+  .role{font-family:var(--mono); color:var(--signal); font-size:12.5px; letter-spacing:.06em; margin-top:6px}
+  .pitch{color:var(--muted); font-size:14px; line-height:1.5; max-width:34ch; margin-top:2px}
+  .id-links{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.03em;
+    color:var(--text); text-decoration:none;
+    border:1px solid var(--line-2); border-radius:8px;
+    padding:7px 11px; transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .chip:hover, .chip:focus-visible{border-color:var(--signal); color:var(--signal); background:var(--signal-dim); outline:none}
 
-  <link href="assets/css/main.css" rel="stylesheet">
+  /* ---------- stats ---------- */
+  .stat{padding:calc(var(--pad) - 4px); justify-content:center}
+  .s1{grid-area:s1}.s2{grid-area:s2}.s3{grid-area:s3}.s4{grid-area:s4}
+  .stat .num{font-family:var(--mono); font-weight:600; font-size:clamp(22px,2vw,32px); color:var(--text); line-height:1}
+  .stat .num.badge{font-size:clamp(15px,1.3vw,20px); color:var(--signal)}
+  .stat .lbl{font-size:11px; color:var(--muted); margin-top:7px; line-height:1.25}
+  .stat::after{content:""; position:absolute; left:var(--pad); bottom:calc(var(--pad) - 6px); width:22px; height:2px; background:var(--signal); opacity:.55}
+
+  /* ---------- projects ---------- */
+  .p1{grid-area:p1}.p2{grid-area:p2}.p3{grid-area:p3}.p4{grid-area:p4}
+  .project{justify-content:space-between; gap:8px; text-decoration:none; color:inherit}
+  .project .p-title{font-family:var(--display); font-weight:600; font-size:clamp(15px,1.35vw,20px); line-height:1.14; letter-spacing:-.01em; margin-top:8px}
+  .p-decision{
+    color:var(--signal); font-size:12.5px; line-height:1.35; font-style:normal;
+    max-height:0; opacity:0; overflow:hidden;
+    transition:max-height .22s ease, opacity .22s ease, margin .22s ease;
+  }
+  .project:hover .p-decision, .project:focus-within .p-decision{max-height:60px; opacity:1; margin-top:2px}
+  .p-mid{margin-top:auto}
+  .p-metric{display:flex; align-items:baseline; gap:8px}
+  .p-metric .num{font-family:var(--mono); font-weight:600; font-size:clamp(20px,1.9vw,30px); color:var(--text)}
+  .p-metric .mlbl{font-size:11px; color:var(--muted); line-height:1.2; max-width:16ch}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+  .tag{font-family:var(--mono); font-size:10px; letter-spacing:.04em; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:3px 7px}
+  .p-links{display:flex; flex-wrap:wrap; gap:12px; margin-top:11px}
+  .p-links a{font-family:var(--mono); font-size:11px; color:var(--muted); text-decoration:none; letter-spacing:.02em; transition:color .15s ease}
+  .p-links a:hover, .p-links a:focus-visible{color:var(--signal); outline:none}
+  .project::before{content:""; position:absolute; top:0; left:0; width:100%; height:2px; background:var(--signal); transform:scaleX(0); transform-origin:left; transition:transform .22s ease}
+  .project:hover::before, .project:focus-within::before{transform:scaleX(1)}
+
+  /* ---------- skills ---------- */
+  .sk{grid-area:sk; justify-content:center}
+  .sk .items{display:flex; flex-wrap:wrap; gap:7px; margin-top:10px}
+  .sk .items span{font-family:var(--mono); font-size:11px; color:var(--text); border:1px solid var(--line-2); border-radius:7px; padding:5px 9px}
+
+  /* ---------- contact ---------- */
+  .ct{grid-area:ct; justify-content:center; gap:6px}
+  .ct a, .ct span{display:block}
+  .ct .row{font-size:12.5px; color:var(--muted); font-family:var(--mono); margin-top:8px; line-height:1.7}
+  .ct .row a{color:var(--text); text-decoration:none; transition:color .15s ease}
+  .ct .row a:hover, .ct .row a:focus-visible{color:var(--signal); outline:none}
+
+  /* ---------- "view all" rail ---------- */
+  .mr{grid-area:mr; padding:0; align-items:center; justify-content:center; text-decoration:none; color:var(--muted)}
+  .mr:hover{color:var(--signal)}
+  .mr .rail{
+    font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    writing-mode:vertical-rl; transform:rotate(180deg); white-space:nowrap;
+  }
+  .mr .count{color:var(--signal); font-weight:600}
+
+  /* ---------- load reveal ---------- */
+  @media (prefers-reduced-motion:no-preference){
+    .tile{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+    .id{animation-delay:.02s}.s1{animation-delay:.06s}.s2{animation-delay:.1s}.s3{animation-delay:.14s}.s4{animation-delay:.18s}
+    .p1{animation-delay:.12s}.p2{animation-delay:.16s}.p3{animation-delay:.2s}.p4{animation-delay:.24s}
+    .sk{animation-delay:.22s}.ct{animation-delay:.26s}.mr{animation-delay:.3s}
+    @keyframes rise{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)}}
+  }
+
+  /* ---------- responsive: stack + scroll on small/short screens ---------- */
+  @media (max-width:1080px), (max-height:760px){
+    body{overflow-y:auto}
+    .stage{height:auto; min-height:100dvh; grid-template-columns:repeat(2,1fr); grid-template-rows:none;
+      grid-template-areas:
+        "id id" "s1 s2" "s3 s4"
+        "p1 p1" "p2 p2" "p3 p3" "p4 p4"
+        "sk sk" "ct ct" "mr mr";}
+    .p-decision{max-height:60px; opacity:1; margin-top:2px}  /* always show on touch */
+    .mr{padding:16px}
+    .mr .rail{writing-mode:horizontal-tb; transform:none; letter-spacing:.14em}
+  }
+  @media (max-width:560px){
+    .stage{grid-template-columns:1fr; grid-template-areas:"id" "s1" "s2" "s3" "s4" "p1" "p2" "p3" "p4" "sk" "ct" "mr";}
+  }
+</style>
 </head>
+<body>
+<div class="grid-texture" aria-hidden="true"></div>
 
-<body class="index-page">
+<main class="stage">
 
-  <header id="header" class="header d-flex flex-column justify-content-center">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
-        <li><a href="#about"><i class="bi bi-person navicon"></i><span>About</span></a></li>
-        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i><span>Resume</span></a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i><span>Portfolio</span></a></li>
-        <li><a href="#contact"><i class="bi bi-envelope navicon"></i><span>Contact</span></a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="main">
-
-    <section id="hero" class="hero section light-background">
-      <img src="assets/img/hero-bg.jpg" alt="">
-      <div class="container" data-aos="zoom-out">
-        <div class="row justify-content-center">
-          <div class="col-lg-9">
-            <h2>Brian Ketchens</h2>
-            <p>Your Next <span class="typed" data-typed-items="Data Analyst, Business Intelligence Analyst, KPI Developer, Criticus Cōgitātor">Data Analyst</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
-            <div class="social-links">
-              <a href="https://x.com/BrianKetchens"><i class="bi bi-twitter-x"></i></a>
-              <a href="https://www.linkedin.com/in/brian-ketchens-2b96ba56/"><i class="bi bi-linkedin"></i></a>
-            </div>
-          </div>
+  <!-- IDENTITY -->
+  <section class="tile id">
+    <div>
+      <div class="id-top">
+        <!-- Small optional avatar — delete this <img> line to remove it -->
+        <img class="avatar" src="assets/img/profile-img.jpg" alt="Brian Ketchens">
+        <div>
+          <div class="eyebrow">Portfolio</div>
+          <h1 class="name">Brian Ketchens</h1>
         </div>
       </div>
-    </section>
+      <div class="role">BI &amp; OPERATIONS ANALYST</div>
+      <p class="pitch">Six Sigma operations background, retooled with a modern analytics stack. I turn messy operational data into decisions leaders can act on.</p>
+    </div>
+    <div class="id-links">
+      <a class="chip" href="https://www.linkedin.com/in/brian-ketchens-2b96ba56/">LinkedIn</a>
+      <a class="chip" href="https://github.com/brianketchens">GitHub</a>
+      <a class="chip" href="mailto:brian.ketchens@outlook.com">Email</a>
+    </div>
+  </section>
 
-    <section id="about" class="about section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>I apply skilled curiosity to exploratory data analysis and statistical modeling to analyze, predict, and visualize complex datasets. I deliver clear business solutions and work well as an individual, or on a team.</p>
-      </div>
+  <!-- STATS -->
+  <section class="tile stat s1"><div class="num">10</div><div class="lbl">analytics projects shipped</div></section>
+  <section class="tile stat s2"><div class="num">2.8M</div><div class="lbl">rows modeled in BigQuery</div></section>
+  <section class="tile stat s3"><div class="num">2,904</div><div class="lbl">US counties analyzed end-to-end</div></section>
+  <section class="tile stat s4"><div class="num badge">Green Belt</div><div class="lbl">Six Sigma DMAIC</div></section>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4 justify-content-center">
-          <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 content">
-            <h2>Data Analyst</h2>
-            <p class="fst-italic py-3">Me at a Glance</p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Professional Experience:</strong> <span>25 Years</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Associates in Science</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>brian.ketchens@outlook.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Employment:</strong> <span>Immediate availability</span></li>
-                </ul>
-              </div>
-            </div>
-            <p class="py-3">
-              Hello. I am Brian. I am amidst a career pivot towards data analytics. My passion for data comes from a curiosity to know what is knowable and a keen desire to effectively problem-solve... [Truncated for brevity, but full text remains in your file]
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="stats" class="stats section">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-            <i class="bi bi-bar-chart"></i>
-            <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="1" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Dashboards</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-            <i class="bi bi-journal-richtext"></i>
-            <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Projects</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="resume" class="resume section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <p>Full resume can be found on my <a href="https://www.linkedin.com/in/brian-ketchens-2b96ba56/">LinkedIn</a> profile.</p>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Summary</h3>
-            <div class="resume-item pb-0">
-              <h4>Brian Ketchens</h4>
-              <p><em>Analytical and results-driven leader...</em></p>
-              <ul>
-                <li>Leadership & Operations: Team Leadership, Process Management, Mentoring.</li>
-                <li>Data Analysis: SQL, Tableau, R, Excel, Six Sigma Greenbelt.</li>
-              </ul>
-            </div>
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Google Data Analytics Certificate</h4>
-              <h5>2025</h5>
-              <p><em>Coursera, Online</em></p>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>E-Commerce Supervisor</h4>
-              <h5>2022 - July 2025</h5>
-              <p><em>Kroger, Jackson, MI</em></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="portfolio" class="portfolio section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-      </div>
-      <div class="container">
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry">
-          <div class="row gy-4 isotope-container">
-            <div class="col-lg-4 col-md-6 portfolio-item filter-R">
-              <div class="portfolio-info">
-                <h4>Bellabeat Case Study</h4>
-                <a href="https://brianketchens.github.io/corduroy-umbrella" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-      </div>
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-4">
-            <div class="info-item d-flex">
-              <i class="bi bi-geo-alt flex-shrink-0"></i>
-              <div>
-                <h3>Location</h3>
-                <p>Jackson, Michigan</p>
-              </div>
-            </div>
-            <div class="info-item d-flex">
-              <i class="bi bi-envelope flex-shrink-0"></i>
-              <div>
-                <h3>Email</h3>
-                <p>brian.ketchens@outlook.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer id="footer" class="footer position-relative light-background">
-    <div class="container">
-      <h3 class="sitename">Brian Ketchens</h3>
-      <div class="copyright">
-        <span>Copyright</span> <strong class="px-1 sitename">Brian Ketchens</strong> <span>All Rights Reserved</span>
-      </div>
-      <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+  <!-- PROJECT 1 -->
+  <article class="tile project p1">
+    <div>
+      <div class="eyebrow">Python · LightGBM · Streamlit</div>
+      <h3 class="p-title">ERCOT Houston Grid Load Forecasting</h3>
+      <div class="p-decision">Can grid demand be forecast from weather structure alone — no autoregressive crutch?</div>
+    </div>
+    <div class="p-mid">
+      <div class="p-metric"><span class="num">0.90</span><span class="mlbl">R² on a weather-only champion model</span></div>
+      <div class="tags"><span class="tag">LightGBM</span><span class="tag">Streamlit</span><span class="tag">Tableau</span></div>
+      <div class="p-links">
+        <a href="https://ercot-predictive-modelling-pzanfe9eeappdcuqskncsn9.streamlit.app/">Live app</a>
+        <a href="https://public.tableau.com/app/profile/brian.ketchens/viz/ERCOTDashboard_17837275014630/ERCOTGridInsightsEngine">Tableau</a>
+        <a href="https://github.com/brianketchens/ercot-predictive-modelling">Source</a>
       </div>
     </div>
-  </footer>
+  </article>
 
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <div id="preloader"></div>
+  <!-- PROJECT 2 -->
+  <article class="tile project p2">
+    <div>
+      <div class="eyebrow">Python · Embeddings · Streamlit</div>
+      <h3 class="p-title">High-Probability Opportunity Radar</h3>
+      <div class="p-decision">Does qualification fit actually predict interviews? An instrument built to measure the gap — with an honesty guardrail that refuses to coach embellishment.</div>
+    </div>
+    <div class="p-mid">
+      <div class="p-metric"><span class="num badge">Study live</span><span class="mlbl">measurement running, findings pending — reported with sample size</span></div>
+      <div class="tags"><span class="tag">Sentence-transformers</span><span class="tag">LLM</span><span class="tag">Honesty guardrail</span></div>
+      <div class="p-links">
+        <a href="https://instrumented-job-search.streamlit.app/">Live app</a>
+        <a href="https://github.com/brianketchens/instrumented-job-search">Source</a>
+      </div>
+    </div>
+  </article>
 
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <!-- PROJECT 3 -->
+  <article class="tile project p3">
+    <div>
+      <div class="eyebrow">R · Tableau · Cost modeling</div>
+      <h3 class="p-title">Employee Retention — Where the Budget Goes</h3>
+      <div class="p-decision">With a finite retention budget, who do you fund first?</div>
+    </div>
+    <div class="p-mid">
+      <div class="p-metric"><span class="num">$20.4M</span><span class="mlbl">annual turnover loss analyzed</span></div>
+      <div class="tags"><span class="tag">R</span><span class="tag">Tableau</span></div>
+      <div class="p-links">
+        <a href="https://public.tableau.com/app/profile/brian.ketchens/viz/TalentRetentionStrategy/Dashboard1">Dashboard</a>
+        <a href="https://github.com/brianketchens/employee-retention">Source</a>
+      </div>
+    </div>
+  </article>
 
-</body>
-</html>
+  <!-- PROJECT 4 -->
+  <article class="tile project p4">
+    <div>
+      <div class="eyebrow">Six Sigma DMAIC · Tableau</div>
+      <h3 class="p-title">CI Defect Reduction — Aim the Next Cycle</h3>
+      <div class="p-decision">One improvement team, one cycle — where do you point it?</div>
+    </div>
+    <div class="p-mid">
+      <div class="p-metric"><span class="num">12/16</span><span class="mlbl">candidate factors ruled out as noise</span></div>
+      <div class="tags"><span class="tag">DMAIC</span><span class="tag">Root cause</span><span class="tag">Tableau</span></div>
+      <div class="p-links">
+        <a href="https://public.tableau.com/app/profile/brian.ketchens/viz/CIDefectReductionDashboard/Dashboard1">Dashboard</a>
+        <a href="https://github.com/brianketchens/CI-defect-reduction">Source</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- SKILLS -->
+  <section class="tile sk">
+    <div class="eyebrow">Toolkit</div>
+    <div class="items">
+      <span>Six Sigma DMAIC</span><span>SQL · PostgreSQL · BigQuery</span><span>R</span><span>Python</span>
+      <span>Power BI</span><span>Tableau</span><span>Streamlit</span><span>Git</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="tile ct">
+    <div class="eyebrow">Contact</div>
+    <div class="row">
+      <a href="mailto:brian.ketchens@outlook.com">brian.ketchens@outlook.com</a>
+      (517) 414-2294 · Michigan
+    </div>
+  </section>
+
+  <!-- VIEW ALL RAIL -->
+  <a class="tile mr" href="file:///C:/Users/brian/Downloads/projects.html">
+    <span class="rail">All <span class="count">10</span> projects →</span>
+  </a>
+
+</main>
+
+
+</body></html>

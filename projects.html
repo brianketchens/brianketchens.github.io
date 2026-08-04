@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)file:///C:/Users/brian/Downloads/projects.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brian Ketchens — All Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Brian Ketchens — All Projects_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1116; --panel:#161B22; --panel-2:#1B222B;
+    --line:#28313D; --line-2:#333E4C;
+    --text:#E7EBF0; --muted:#8B95A3; --muted-2:#6B7482;
+    --signal:#F2B84B; --signal-dim:rgba(242,184,75,.14);
+    --radius:14px;
+    --display:"Space Grotesk",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body); color:var(--text);
+    background-color:var(--ink);
+    background-image:radial-gradient(1200px 600px at 85% -10%, rgba(242,184,75,.05), transparent 60%);
+    -webkit-font-smoothing:antialiased; min-height:100dvh;
+  }
+  .grid-texture{
+    position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.018) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size:34px 34px;
+  }
+  .wrap{position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:clamp(22px,4vw,52px) clamp(16px,3vw,32px) 56px}
+
+  /* ---------- header ---------- */
+  header{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:26px}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-2)}
+  h1{font-family:var(--display); font-weight:700; font-size:clamp(28px,3.4vw,44px); letter-spacing:-.02em; line-height:1.02; margin-top:6px}
+  .sub{color:var(--muted); font-size:14px; margin-top:8px; max-width:52ch; line-height:1.5}
+  .back{
+    font-family:var(--mono); font-size:12.5px; color:var(--text); text-decoration:none;
+    border:1px solid var(--line-2); border-radius:9px; padding:9px 14px; white-space:nowrap;
+    transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .back:hover, .back:focus-visible{border-color:var(--signal); color:var(--signal); background:var(--signal-dim); outline:none}
+
+  /* ---------- filter bar ---------- */
+  .filters{display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin-bottom:22px; padding-bottom:20px; border-bottom:1px solid var(--line)}
+  .filter{
+    font-family:var(--mono); font-size:12px; letter-spacing:.03em; color:var(--muted);
+    background:transparent; border:1px solid var(--line-2); border-radius:8px; padding:8px 13px;
+    cursor:pointer; transition:border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .filter:hover{color:var(--text); border-color:var(--muted-2)}
+  .filter[aria-pressed="true"]{color:var(--ink); background:var(--signal); border-color:var(--signal); font-weight:600}
+  .filter:focus-visible{outline:2px solid var(--signal); outline-offset:2px}
+  .count{margin-left:auto; font-family:var(--mono); font-size:11.5px; color:var(--muted-2); letter-spacing:.04em}
+
+  /* ---------- grid ---------- */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:16px}
+  .card{
+    position:relative; overflow:hidden; display:flex; flex-direction:column;
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px; min-height:238px;
+    transition:border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{border-color:var(--line-2); background:var(--panel-2); transform:translateY(-3px); box-shadow:0 12px 34px -14px rgba(0,0,0,.6)}
+  .card::before{content:""; position:absolute; top:0; left:0; width:100%; height:2px; background:var(--signal); transform:scaleX(0); transform-origin:left; transition:transform .22s ease}
+  .card:hover::before, .card:focus-within::before{transform:scaleX(1)}
+  .card.hide{display:none}
+
+  .c-title{font-family:var(--display); font-weight:600; font-size:18px; line-height:1.16; letter-spacing:-.01em; margin-top:7px}
+  .summary{color:var(--muted); font-size:12.5px; line-height:1.5; margin-top:9px}
+  .c-mid{margin-top:auto; padding-top:16px}
+  .metric{display:flex; align-items:baseline; gap:8px}
+  .metric .num{font-family:var(--mono); font-weight:600; font-size:26px; color:var(--text); line-height:1}
+  .metric .num.badge{font-size:17px; color:var(--signal)}
+  .metric .mlbl{font-size:11px; color:var(--muted); line-height:1.25; max-width:22ch}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:11px}
+  .tag{font-family:var(--mono); font-size:10px; letter-spacing:.04em; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:3px 7px}
+  .links{display:flex; flex-wrap:wrap; gap:13px; margin-top:13px}
+  .links a{font-family:var(--mono); font-size:11.5px; color:var(--muted); text-decoration:none; letter-spacing:.02em; transition:color .15s ease}
+  .links a:hover, .links a:focus-visible{color:var(--signal); outline:none}
+
+  footer{margin-top:40px; padding-top:22px; border-top:1px solid var(--line); display:flex; flex-wrap:wrap; gap:14px; justify-content:space-between; align-items:center}
+  footer .who{font-family:var(--display); font-weight:600; font-size:15px}
+  footer .links-f{display:flex; gap:12px}
+  footer a{font-family:var(--mono); font-size:12px; color:var(--muted); text-decoration:none; transition:color .15s ease}
+  footer a:hover, footer a:focus-visible{color:var(--signal); outline:none}
+
+  @media (prefers-reduced-motion:no-preference){
+    .card{animation:rise .45s cubic-bezier(.2,.7,.2,1) both}
+  }
+  @keyframes rise{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div class="grid-texture" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Portfolio · Brian Ketchens</div>
+      <h1>All projects</h1>
+      <p class="sub">Ten shipped analyses across operations, quality, and BI — each built to answer a decision, with the source and a live artifact one click away.</p>
+    </div>
+    <a class="back" href="file:///C:/Users/brian/Downloads/index.html">← Home</a>
+  </header>
+
+  <div class="filters" role="group" aria-label="Filter projects by discipline">
+    <button class="filter" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter" data-filter="ml" aria-pressed="false">ML &amp; Python</button>
+    <button class="filter" data-filter="dashboards" aria-pressed="false">Dashboards</button>
+    <button class="filter" data-filter="sql" aria-pressed="false">SQL</button>
+    <button class="filter" data-filter="r" aria-pressed="false">R &amp; Rmd</button>
+    <span class="count" id="count">Showing 10 of 10</span>
+  </div>
+
+  <div class="grid" id="grid">
+
+    <!-- 1. ERCOT -->
+    <article class="card" data-cat="ml dashboards">
+      <div class="eyebrow">ML &amp; Forecasting</div>
+      <h3 class="c-title">ERCOT Houston Grid Load Forecasting</h3>
+      <p class="summary">Weather structure alone predicts grid load — a feature audit exposed that a single autoregressive lag was inflating the baseline by ~65%, so the champion was rebuilt without it.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">0.90</span><span class="mlbl">R² on a weather-only champion model</span></div>
+        <div class="tags"><span class="tag">LightGBM</span><span class="tag">Streamlit</span><span class="tag">Tableau</span></div>
+        <div class="links">
+          <a href="https://ercot-predictive-modelling-pzanfe9eeappdcuqskncsn9.streamlit.app/">Live app</a>
+          <a href="https://public.tableau.com/app/profile/brian.ketchens/viz/ERCOTDashboard_17837275014630/ERCOTGridInsightsEngine">Tableau</a>
+          <a href="https://github.com/brianketchens/ercot-predictive-modelling">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Opportunity Radar -->
+    <article class="card" data-cat="ml">
+      <div class="eyebrow">Applied ML · Measurement</div>
+      <h3 class="c-title">High-Probability Opportunity Radar</h3>
+      <p class="summary">Does qualification fit actually predict interviews? An instrument that scores postings on two independent axes and logs real outcomes — with a guardrail that refuses to coach embellishment.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num badge">Study live</span><span class="mlbl">measurement running, findings pending — reported with sample size</span></div>
+        <div class="tags"><span class="tag">Sentence-transformers</span><span class="tag">LLM</span><span class="tag">Honesty guardrail</span></div>
+        <div class="links">
+          <a href="https://instrumented-job-search.streamlit.app/">Live app</a>
+          <a href="https://github.com/brianketchens/instrumented-job-search">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Employee Retention -->
+    <article class="card" data-cat="r dashboards">
+      <div class="eyebrow">People Analytics</div>
+      <h3 class="c-title">Employee Retention — Where the Budget Goes</h3>
+      <p class="summary">With a finite retention budget, who do you fund first? Ranking roles by cost and by exit rate produces two different lists — Lab Techs are the only role that tops both.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">$20.4M</span><span class="mlbl">annual turnover loss analyzed</span></div>
+        <div class="tags"><span class="tag">R</span><span class="tag">Tableau</span><span class="tag">Cost modeling</span></div>
+        <div class="links">
+          <a href="https://public.tableau.com/app/profile/brian.ketchens/viz/TalentRetentionStrategy/Dashboard1">Dashboard</a>
+          <a href="https://github.com/brianketchens/employee-retention">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. CI Defect Reduction -->
+    <article class="card" data-cat="dashboards">
+      <div class="eyebrow">Continuous Improvement</div>
+      <h3 class="c-title">CI Defect Reduction — Aim the Next Cycle</h3>
+      <p class="summary">One improvement team, one cycle — where do you point it? Screened sixteen candidate factors, rejected twelve as noise, and isolated three controllable drivers.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">12/16</span><span class="mlbl">candidate factors ruled out as noise</span></div>
+        <div class="tags"><span class="tag">DMAIC</span><span class="tag">Root cause</span><span class="tag">Tableau</span></div>
+        <div class="links">
+          <a href="https://public.tableau.com/app/profile/brian.ketchens/viz/CIDefectReductionDashboard/Dashboard1">Dashboard</a>
+          <a href="https://github.com/brianketchens/CI-defect-reduction">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Executive Supply Chain Dashboard -->
+    <article class="card" data-cat="dashboards sql">
+      <div class="eyebrow">Business Intelligence</div>
+      <h3 class="c-title">Executive Supply Chain &amp; Financial Dashboard</h3>
+      <p class="summary">A multi-page executive suite linking fulfillment to profit, with computation pushed upstream to a BigQuery data lake for zero-lag cross-filtering over millions of rows.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">2.8M</span><span class="mlbl">transaction rows, sub-100ms cross-filter</span></div>
+        <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">BigQuery</span></div>
+        <div class="links">
+          <a href="https://brianketchens.github.io/ecommerce-dashboard/">README</a>
+          <a href="https://mavenshowcase.com/project/56909">Dashboard</a>
+          <a href="https://github.com/brianketchens/ecommerce-dashboard">Repo</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6. E-Commerce Bottleneck (SQL) -->
+    <article class="card" data-cat="sql">
+      <div class="eyebrow">Data Engineering</div>
+      <h3 class="c-title">E-Commerce Fulfillment Bottleneck Audit</h3>
+      <p class="summary">Loaded 32.4M Instacart order-product rows into a local PostgreSQL warehouse, then mined reorder timing, product co-occurrence, and purchase-interval signals — with every proxy labeled as one.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">32.4M</span><span class="mlbl">order-product rows in a local PostgreSQL warehouse</span></div>
+        <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Window functions</span><span class="tag">Self-joins</span></div>
+        <div class="links">
+          <a href="https://github.com/brianketchens/ecommerce-bottleneck-sql/blob/main/README.md">README</a>
+          <a href="https://github.com/brianketchens/ecommerce-bottleneck-sql">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7. COVID Structural Health Inequity -->
+    <article class="card" data-cat="r sql">
+      <div class="eyebrow">Public Health Analytics</div>
+      <h3 class="c-title">Structural Health Inequity During Pandemics</h3>
+      <p class="summary">What drives persistent pandemic burden? A county-level mortality analysis identifying structural conditions — not age or race — as the primary predictors.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">2,904</span><span class="mlbl">US counties; negative binomial, p&lt;0.001</span></div>
+        <div class="tags"><span class="tag">R</span><span class="tag">BigQuery</span><span class="tag">leaflet · plotly</span></div>
+        <div class="links">
+          <a href="https://brianketchens.github.io/structural-health-inequity-covid/">Full report</a>
+          <a href="https://brianketchens.github.io/structural-health-inequity-covid/about/">README</a>
+          <a href="https://github.com/brianketchens/structural-health-inequity-covid">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8. COVID ETL Pipeline (SQL) -->
+    <article class="card" data-cat="sql">
+      <div class="eyebrow">Data Engineering</div>
+      <h3 class="c-title">COVID-19 ETL Pipeline — BigQuery SQL</h3>
+      <p class="summary">Three public datasets, one clean analytical base table — schema mismatches, type conflicts, and FIPS-key formatting all resolved in production ETL.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">386K</span><span class="mlbl">weekly county-rows from 3 joined sources</span></div>
+        <div class="tags"><span class="tag">BigQuery SQL</span><span class="tag">CTEs</span><span class="tag">FIPS joins</span></div>
+        <div class="links">
+          <a href="https://github.com/brianketchens/structural-health-inequity-covid">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 9. Hospital Patient Analysis -->
+    <article class="card" data-cat="r">
+      <div class="eyebrow">Healthcare Analytics</div>
+      <h3 class="c-title">Hospital Patient Analysis in R</h3>
+      <p class="summary">Length of stay, billing, and predictive modeling across 55,500 records — including a null model result documented honestly rather than quietly dropped.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">55.5K</span><span class="mlbl">inpatient records; tidymodels workflow</span></div>
+        <div class="tags"><span class="tag">R</span><span class="tag">tidymodels</span><span class="tag">flexdashboard</span></div>
+        <div class="links">
+          <a href="https://brianketchens.github.io/hospital-analysis/hospital_analysis.html#Executive_Summary">Full report</a>
+          <a href="https://brianketchens.github.io/hospital-analysis/hospital_dashboard.html">Dashboard</a>
+          <a href="https://github.com/brianketchens/hospital-analysis">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10. Bellabeat -->
+    <article class="card" data-cat="r">
+      <div class="eyebrow">Product Analytics</div>
+      <h3 class="c-title">Bellabeat Case Study — Fitbit Data</h3>
+      <p class="summary">Fitbit wellness patterns translated into product strategy — weekend activity peaks point to a weekday-nudge opportunity, backed by simple correlation evidence.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">0.59</span><span class="mlbl">steps↔calories correlation; 33 participants</span></div>
+        <div class="tags"><span class="tag">R</span><span class="tag">tidyverse</span><span class="tag">ggplot2</span></div>
+        <div class="links">
+          <a href="https://brianketchens.github.io/corduroy-umbrella">Full report</a>
+          <a href="https://github.com/brianketchens/corduroy-umbrella">Source</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <footer>
+    <span class="who">Brian Ketchens</span>
+    <div class="links-f">
+      <a href="https://www.linkedin.com/in/brian-ketchens-2b96ba56/">LinkedIn</a>
+      <a href="https://github.com/brianketchens">GitHub</a>
+      <a href="mailto:brian.ketchens@outlook.com">Email</a>
+      <a href="file:///C:/Users/brian/Downloads/index.html">Home</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.filter');
+  const cards = document.querySelectorAll('.card');
+  const count = document.getElementById('count');
+  const total = cards.length;
+
+  function applyFilter(f){
+    let shown = 0;
+    cards.forEach(card => {
+      const match = f === 'all' || card.dataset.cat.split(' ').includes(f);
+      card.classList.toggle('hide', !match);
+      if (match) shown++;
+    });
+    count.textContent = f === 'all'
+      ? `Showing ${total} of ${total}`
+      : `Showing ${shown} of ${total}`;
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      applyFilter(btn.dataset.filter);
+    });
+  });
+</script>
+
+
+</body></html>

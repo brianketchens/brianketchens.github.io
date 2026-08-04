@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)file:///C:/Users/brian/Downloads/product-pairings.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Product Pairings — Instacart Fulfillment Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Top Product Pairings — Instacart Fulfillment Audit_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1116; --panel:#161B22; --line:#28313D; --line-2:#333E4C;
+    --text:#E7EBF0; --muted:#8B95A3; --muted-2:#6B7482;
+    --signal:#F2B84B; --grey:#6E7681;
+    --display:"Space Grotesk",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:var(--body); color:var(--text); background:var(--ink);
+    -webkit-font-smoothing:antialiased; padding:clamp(20px,4vw,48px);
+  }
+  .wrap{max-width:900px; margin:0 auto}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-2)}
+  h1{font-family:var(--display); font-weight:700; font-size:clamp(22px,2.6vw,32px); letter-spacing:-.02em; margin-top:6px; line-height:1.1}
+  .sub{color:var(--muted); font-size:14px; margin-top:10px; max-width:64ch; line-height:1.55}
+
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin:26px 0 22px}
+  .stat{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .stat .lbl{font-size:12px; color:var(--muted)}
+  .stat .num{font-family:var(--mono); font-weight:600; font-size:26px; color:var(--text); margin-top:6px}
+  .stat .num.amber{color:var(--signal)}
+
+  .legend{display:flex; flex-wrap:wrap; gap:18px; margin-bottom:14px; font-family:var(--mono); font-size:12px; color:var(--muted)}
+  .legend span{display:flex; align-items:center; gap:7px}
+  .swatch{width:11px; height:11px; border-radius:2px; display:inline-block}
+
+  .chartbox{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px 18px 10px; position:relative; height:940px}
+
+  footer{margin-top:22px; font-family:var(--mono); font-size:11px; color:var(--muted-2); line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">E-Commerce Fulfillment Bottleneck Audit · product_pairings.sql</div>
+  <h1>The store runs on bananas</h1>
+  <p class="sub">The 20 most frequently co-ordered product pairs on Instacart, by shared-order count. Bars in amber contain a banana — 15 of the top 20 do, which makes bananas the connective tissue of the basket and the single highest-leverage item to place well.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="lbl">Top pairs containing a banana</div><div class="num amber">15 / 20</div></div>
+    <div class="stat"><div class="lbl">Strongest pair (shared orders)</div><div class="num">62,341</div></div>
+    <div class="stat"><div class="lbl">Distinct products in the top 20</div><div class="num">14</div></div>
+  </div>
+
+  <div class="legend">
+    <span><span class="swatch" style="background:#F2B84B"></span>Pair contains a banana</span>
+    <span><span class="swatch" style="background:#6E7681"></span>No banana</span>
+  </div>
+
+  <div class="chartbox">
+    <canvas id="pairs" role="img" aria-label="Horizontal bar chart of the 20 most frequent product pairs ranked by shared orders, colored by whether the pair contains a banana" width="1294" height="1366" style="display: block; box-sizing: border-box; height: 910px; width: 862px;"></canvas>
+  </div>
+
+  <footer>
+    Source: Instacart Market Basket dataset · self-join on order_id, pairs with &gt; 5,000 co-occurrences · 32.4M order-product rows in PostgreSQL
+  </footer>
+</div>
+
+<script src="./Top Product Pairings — Instacart Fulfillment Audit_files/chart.umd.js.download"></script>
+<script>
+  const rows = [
+    [["Bag of Organic Bananas","+ Organic Hass Avocado"],62341,1],
+    [["Bag of Organic Bananas","+ Organic Strawberries"],61628,1],
+    [["Organic Strawberries","+ Banana"],56156,1],
+    [["Banana","+ Organic Avocado"],53395,1],
+    [["Organic Baby Spinach","+ Banana"],51395,1],
+    [["Bag of Organic Bananas","+ Organic Baby Spinach"],50372,1],
+    [["Strawberries","+ Banana"],41232,1],
+    [["Banana","+ Large Lemon"],40880,1],
+    [["Organic Strawberries","+ Organic Hass Avocado"],40794,0],
+    [["Bag of Organic Bananas","+ Organic Raspberries"],40503,1],
+    [["Organic Strawberries","+ Organic Baby Spinach"],38134,0],
+    [["Organic Baby Spinach","+ Organic Hass Avocado"],34901,0],
+    [["Banana","+ Organic Fuji Apple"],33943,1],
+    [["Organic Strawberries","+ Organic Raspberries"],33863,0],
+    [["Banana","+ Cucumber Kirby"],32097,1],
+    [["Banana","+ Limes"],31772,1],
+    [["Banana","+ Organic Whole Milk"],31641,1],
+    [["Banana","+ Organic Hass Avocado"],31222,1],
+    [["Organic Baby Spinach","+ Organic Avocado"],30889,0],
+    [["Banana","+ Honeycrisp Apple"],28408,1]
+  ];
+  new Chart(document.getElementById('pairs'), {
+    type: 'bar',
+    data: {
+      labels: rows.map(r => r[0]),
+      datasets: [{
+        data: rows.map(r => r[1]),
+        backgroundColor: rows.map(r => r[2] ? '#F2B84B' : '#6E7681'),
+        borderRadius: 3,
+        borderSkipped: 'start'
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1B222B',
+          borderColor: '#333E4C',
+          borderWidth: 1,
+          titleColor: '#E7EBF0',
+          bodyColor: '#8B95A3',
+          callbacks: {
+            title: (i) => i[0].label.replace(',', ' '),
+            label: (c) => c.parsed.x.toLocaleString() + ' shared orders'
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#28313D' },
+          ticks: { color: '#8B95A3', font: { family: 'IBM Plex Mono', size: 11 }, callback: (v) => v.toLocaleString() }
+        },
+        y: {
+          afterFit: (scale) => { scale.width = 200; },
+          grid: { display: false },
+          ticks: { color: '#C7CDD6', font: { family: 'Inter', size: 11 }, autoSkip: false }
+        }
+      }
+    }
+  });
+</script>
+
+
+</body></html>
