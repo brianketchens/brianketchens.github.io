@@ -103,7 +103,7 @@
 <div class="wrap">
   <header>
     <div>
-      <div class="eyebrow">Portfolio · Brian Ketchens</div>
+      <div class="eyebrow">Portfolio · Brian E. Ketchens</div>
       <h1>All projects</h1>
       <p class="sub">Ten shipped analyses across operations, quality, and BI — each built to answer a decision, with the source and a live artifact one click away.</p>
     </div>
@@ -123,21 +123,18 @@
 
 
   <!-- 1. Olist -->
-  <article class="tile project p4">
-    <div>
+  <article class="card" data-cat="sql">
       <div class="eyebrow">dbt · Snowflake · Dimensional modeling</div>
-      <h3 class="p-title">Olist Star Schema — dbt + Snowflake</h3>
-      <div class="p-decision">Can a warehouse model prove its own integrity, not just assert it?</div>
-    </div>
-    <div class="p-mid">
-      <div class="p-metric"><span class="num">28/28</span><span class="mlbl">dbt tests passing — every fact row resolves to a real dimension</span></div>
-      <div class="tags"><span class="tag">dbt</span><span class="tag">Snowflake</span><span class="tag">Star schema</span></div>
-      <div class="p-links">
-        <a href="https://github.com/brianketchens/olist_star">Source</a>
+      <h3 class="c-title">Olist Star Schema — dbt + Snowflake</h3>
+      <p class="summary">An end-to-end dbt + Snowflake pipeline transforming raw Olist e-commerce CSVs into a tested star schema.</p>
+      <div class="c-mid">
+        <div class="metric"><span class="num">28/28</span><span class="mlbl">dbt tests passing — every fact row resolves to a real dimension</span></div>
+        <div class="tags"><span class="tag">Snowflake</span><span class="tag">Star schema</span><span class="tag">dbt</span></div>
+        <div class="links">
+          <a href="https://github.com/brianketchens/olist_star">Source</a>
+        </div>
       </div>
-    </div>
-  </article>
-
+    </article>
     <!-- 2. ERCOT -->
     <article class="card" data-cat="ml dashboards">
       <div class="eyebrow">ML &amp; Forecasting</div>
